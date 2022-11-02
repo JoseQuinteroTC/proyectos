@@ -1,0 +1,48 @@
+<meta charset="UTF-8">
+<h1>Circulo con click y cambio de color con click derecho</h1>
+<canvas width="600" height="400">
+  
+</canvas>
+
+<script>
+
+  var pantalla = document.querySelector("canvas");
+  var pincel = pantalla.getContext("2d");
+
+  pincel.fillStyle = "lightgray";
+  pincel.fillRect(0,0,600,400);
+  var colores = ["blue", "green", "red"];
+  var x=1;
+  var n= 0;
+
+   function cambiarColor(){
+
+
+    n++;
+    if (n>2) {
+      n=0;
+    }
+
+    return false;
+
+   }
+
+   function dibujarCirculo(evento){
+
+    var x = evento.pageX - pantalla.offsetLeft;
+    var y = evento.pageY - pantalla.offsetTop;
+
+    pincel.fillStyle = colores[n];
+    pincel.beginPath();
+    pincel.arc(x, y, 20, 0, 2*3.14);
+    pincel.fill();
+
+
+  }
+
+  pantalla.oncontextmenu = cambiarColor;
+  pantalla.onclick = dibujarCirculo;
+
+
+
+</script>

@@ -1,0 +1,110 @@
+<canvas width="600" height="400"></canvas>
+
+<script>
+    var pantalla = document.querySelector('canvas');
+    var pincel = pantalla.getContext('2d');
+    var color = ["red", "green", "blue"];
+    var n = 2;
+
+    pincel.fillStyle = 'grey';
+    pincel.fillRect(0, 0, 600, 400);
+
+    var puedoDibujar = false;
+
+    function seleccionarColor(evento){
+
+        var xPosicion = evento.pageX - pantalla.offsetLeft;
+        var yPosicion = evento.pageY - pantalla.offsetTop;
+
+        if (xPosicion <= 50 && xPosicion >= 0 ) {
+            n = 0;
+            console.log(0);
+
+        }
+        if (xPosicion <= 100 && xPosicion >= 50 ) {
+            n = 1;
+            console.log(1);
+
+        }
+        if (xPosicion <= 150 && xPosicion >= 100 ) {
+            n = 2;
+            console.log(2);
+        }
+    }
+
+    function dibujarCirculo(x,y,n) {
+
+        if(puedoDibujar) {
+            pincel.fillStyle = color[n];
+            pincel.beginPath();
+            pincel.arc(x, y, 5, 0, 2 * Math.PI);
+            pincel.fill();
+
+        }
+
+    }
+
+    function dibujarColores(x , y , color){
+        pincel.fillStyle = color;
+        pincel.beginPath();
+        pincel.fillRect(x, y, 50, 50);
+        pincel.fill();
+
+    }
+
+
+    function habilitarDibujar() {
+
+        puedoDibujar = true;
+    }
+
+    function deshabilitarDibujar() {
+
+        puedoDibujar = false;
+    }
+
+
+    function puedeDisenharArea(xCoordenada,yCoordenada){
+
+        if ((xCoordenada >= 0) && (xCoordenada < (3*50+5)) && 
+            (yCoordenada >= 0) && (yCoordenada < (50+5))) { 
+
+            return false;
+            console.log(false);
+
+        } else{
+
+            return true;
+            console.log(true);
+
+        }
+
+    }
+
+    function capturarMovimientoDelMouse(evento){
+
+        var x = evento.pageX - pantalla.offsetLeft;
+        var y = evento.pageY - pantalla.offsetTop;
+
+        if (puedeDisenharArea(x,y)){
+
+            dibujarCirculo(x,y,n);
+
+        }
+
+    }
+
+    pantalla.onmousemove = capturarMovimientoDelMouse;
+
+    pantalla.onmousedown = habilitarDibujar;
+
+    pantalla.onmouseup = deshabilitarDibujar;
+
+    dibujarColores(0,0,"red");
+    dibujarColores(50,0,"green");
+    dibujarColores(100,0,"blue");
+
+    pantalla.onclick = seleccionarColor;
+
+
+</script>

@@ -1,0 +1,43 @@
+<meta charset="utf-8">
+
+<h1>Calculadora de IMC</h1>
+
+<script type="text/javascript">
+
+	function imprimir(frase){
+
+		document.write(frase);
+	}
+
+	function calcularImc(peso, altura){
+
+		return imc = peso/(altura * altura);
+	}
+
+	nombre = prompt("Cual es su nombre?");
+	peso = prompt("Informe su peso en Kilogramos");
+	altura = prompt("Informe su esatrura en Metros");
+	imcCalculado = calcularImc(peso,altura);
+
+	imprimir(nombre + " su IMC calculado es de: " + imcCalculado );
+
+	if (imcCalculado < 18.5) {
+
+		imprimir("<br><br>Usted se encuentra en insuficiencia");
+	}
+	if (imcCalculado >= 18.5 && imcCalculado<= 24.9) {
+
+		imprimir("<br><br>Usted se encuentra en estado normal");
+	}
+	if (imcCalculado > 25 && imcCalculado <30) {
+
+		imprimir("<br><br>Usted se encuentra en sobrepeso");
+	}
+	if (imcCalculado >= 30) {
+
+		imprimir("<br><br>Usted se encuentra en obesidad");
+	}
+
+
+	
+</script>

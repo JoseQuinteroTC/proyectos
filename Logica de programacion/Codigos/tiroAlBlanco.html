@@ -1,0 +1,89 @@
+<meta charset="UTF-8">
+<h1>Tiro al blanco</h1>
+<canvas width="600" height="400">
+  
+</canvas>
+
+<script>
+
+  var pantalla = document.querySelector("canvas");
+  var pincel = pantalla.getContext("2d");
+
+  var xAleatorio;
+  var yAleatorio;
+  var radio = 10;
+
+
+  pincel.fillStyle = "lightgray";
+  pincel.fillRect(0,0,600,400);
+
+
+  function dibujarCirculo(x,y,radio,color){
+
+    pincel.strokeStyle = "black";
+    pincel.strokeRect(0,0,600,400);
+    pincel.fillStyle = color;
+    pincel.beginPath();
+    pincel.arc(x, y, radio, 0, 2*Math.PI);
+    pincel.fill();
+
+
+  }
+
+  function limpiarPantalla(){
+
+    pincel.clearRect(0,0,600,400);
+  }
+
+  function disenharObjetivo(x,y){
+
+    dibujarCirculo(x , y , radio + 10 , "red");
+    dibujarCirculo(x , y , radio + 5 , "white");
+    dibujarCirculo(x , y , radio , "red");
+  }
+
+  function sortearPosicion(maximo){
+
+    return Math.floor(Math.random()*maximo);
+  }
+
+
+  function movimiento(){
+
+    limpiarPantalla();
+    xAleatorio = sortearPosicion(600);
+    yAleatorio = sortearPosicion(400);
+
+    disenharObjetivo(xAleatorio,yAleatorio);
+
+
+  }
+
+  
+ setInterval(movimiento,1000);
+
+
+   function disparar(evento){
+
+    var xPosicion = evento.pageX - pantalla.offsetLeft;
+    var yPosicion = evento.pageY - pantalla.offsetTop;
+
+    if ((xPosicion < xAleatorio + radio) && 
+        (xPosicion > xAleatorio - radio) && 
+        (yPosicion < yAleatorio + radio) && 
+        (yPosicion > yAleatorio - radio)) {
+ 
+      alert("acertaste")
+      //console.log("acertaste")
+
+    }
+
+    
+  }
+ pantalla.onclick = disparar;
+
+
+
+
+
+</script>

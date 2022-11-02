@@ -1,0 +1,60 @@
+<meta charset="UTF-8">
+<h1>Circulo con click</h1>
+<canvas width="600" height="400">
+  
+</canvas>
+
+<script>
+
+  var pantalla = document.querySelector("canvas");
+  var pincel = pantalla.getContext("2d");
+
+  pincel.fillStyle = "lightgray";
+  pincel.fillRect(0,0,600,400);
+
+
+   function dibujarCirculo(x,y){
+
+
+    pincel.fillStyle = "blue";
+    pincel.beginPath();
+    pincel.arc(x, y, 20, 0, 2*Math.PI);
+    pincel.fill();
+
+
+  }
+
+  function limpiarPantalla(){
+
+    pincel.clearRect(0,0,600,400);
+  }
+  var x = 0;
+  var z = 1;
+  function movimiento(){
+
+    limpiarPantalla();
+    dibujarCirculo(x,30);
+
+    if (z==1) {
+      x++;
+      console.log("true")
+    }else{
+      x--;
+      console.log("false")
+    }
+    if (x>580) {
+      z=0;
+    }
+    if(x<20){
+      z=1;
+    }
+
+  }
+
+  
+ setInterval(movimiento,0);
+
+
+
+
+</script>

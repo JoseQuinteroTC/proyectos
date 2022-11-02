@@ -1,0 +1,33 @@
+<meta charset="utf-8">
+
+<h1>Adivinar el numero</h1>
+
+<script type="text/javascript">
+
+	function imprimir(frase){
+
+		document.write(frase);
+	}
+
+	function calcularImc(peso, altura){
+
+		return imc = peso/(altura * altura);
+	}
+
+	var numeroPensado = Math.round(Math.random()*10);
+	var numero = parseInt(prompt("Ingrese el numero"));
+	
+
+
+
+
+	if (numero == numeroPensado) {
+
+		imprimir("<br><br>Felicidades adivinaste");
+	}else{
+		imprimir("<br><br>Fallaste el numero era: " + numeroPensado);
+	}
+
+
+	
+</script>

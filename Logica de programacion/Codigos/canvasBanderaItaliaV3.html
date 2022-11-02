@@ -1,0 +1,27 @@
+<meta charset="UTF-8">
+<h1>Semaforo</h1>
+<canvas width="200" height="200">
+  
+</canvas>
+
+<script>
+
+  var pantalla = document.querySelector("canvas");
+  var pincel = pantalla.getContext("2d");
+  var posicion = 50;
+
+  function dibujarCuadrados(x,y,color) {
+
+    pincel.fillStyle = color;
+    pincel.strokeStyle = "black";
+    pincel.fillRect(x,y,50,50);
+    pincel.strokeRect(x,y,50,50);
+    
+  }
+
+
+  dibujarCuadrados(0,0,"red");
+  dibujarCuadrados(0,50,"yellow");
+  dibujarCuadrados(0,100,"green");
+
+</script>
